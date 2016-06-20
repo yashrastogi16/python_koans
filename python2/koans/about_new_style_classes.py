@@ -34,7 +34,7 @@ class AboutNewStyleClasses(Koan):
     # ------------------------------------------------------------------
 
     def test_old_style_classes_have_type_but_no_class_attribute(self):
-        self.assertEqual(__, type(self.OldStyleClass).__name__)
+        self.assertEqual('classobj', type(self.OldStyleClass).__name__)
 
         try:
             cls = self.OldStyleClass.__class__.__name__
@@ -42,13 +42,13 @@ class AboutNewStyleClasses(Koan):
             pass
 
         # What was that error message from the exception?
-        self.assertMatch(__, ex[0])
+        self.assertMatch("class OldStyleClass has no attribute '__class__'", ex[0])
 
     def test_new_style_classes_have_same_class_as_type(self):
         new_style = self.NewStyleClass()
-        self.assertEqual(__, self.NewStyleClass.__class__)
+        self.assertEqual(type(type), self.NewStyleClass.__class__)
         self.assertEqual(
-            __,
+            True,
             type(self.NewStyleClass) == self.NewStyleClass.__class__)
 
     # ------------------------------------------------------------------
